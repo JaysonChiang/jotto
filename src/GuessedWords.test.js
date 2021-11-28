@@ -1,8 +1,8 @@
 import { shallow } from 'enzyme';
 import { findByTestAttr } from '../test/testUtils';
-import GuessedWord from './GuessedWords';
+import GuessedWords from './GuessedWords';
 
-const setup = (props = {}) => shallow(<GuessedWord {...props} />);
+const setup = (props = {}) => shallow(<GuessedWords {...props} />);
 
 describe('if there are no words guessed', () => {
   let wrapper;
@@ -22,9 +22,9 @@ describe('if there are no words guessed', () => {
 describe('if there are words guessed', () => {
   let wrapper;
   const guessedWords = [
-    { guessedWord: 'train', letterMAtchCount: 3 },
-    { guessedWord: 'agile', letterMAtchCount: 1 },
-    { guessedWord: 'party', letterMAtchCount: 5 },
+    { guessedWord: 'train', letterMatchCount: 3 },
+    { guessedWord: 'agile', letterMatchCount: 1 },
+    { guessedWord: 'party', letterMatchCount: 5 },
   ];
   beforeEach(() => {
     wrapper = setup({ guessedWords });

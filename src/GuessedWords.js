@@ -1,4 +1,4 @@
-const GuessedWord = ({ guessedWords }) => {
+const GuessedWords = ({ guessedWords }) => {
   let contents = '';
   if (guessedWords.length === 0) {
     contents = (
@@ -14,8 +14,8 @@ const GuessedWord = ({ guessedWords }) => {
     contents = (
       <div data-test="guessed-words">
         <h3>Guessed Words</h3>
-        <table>
-          <thead>
+        <table className="table table-sm">
+          <thead className="thead-light">
             <tr>
               <th>Guess</th>
               <th>Matching Letters</th>
@@ -29,4 +29,4 @@ const GuessedWord = ({ guessedWords }) => {
   return <div data-test="component-guessed-words">{contents}</div>;
 };
 
-export default GuessedWord;
+export default GuessedWords;
