@@ -1,6 +1,7 @@
 import { mount } from 'enzyme';
-import { findByTestAttr } from '../test/testUtils';
+import { findByTestAttr ,storeFactory} from '../test/testUtils';
 import App from './App';
+import { Provider } from 'react-redux';
 
 // activate global mock to make sure getSecretWord doesn't make network call
 import { getSecretWord as mockGetSecretWord } from './actions';
@@ -10,10 +11,15 @@ jest.mock('./actions');
  * Setup funtion for App Component
  * @returns {Wrapper}
  */
-const setup = () => {
+const setup = (initialState = {}) => {
   // use mount, because useEffect not called on `shallow`
   // https://github.com/airbn/enzyme/issues/2086
-  return mount(<App />);
+  const store = storeFactory(initialState);
+  return mount(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 };
 
 test('renders withow error', () => {
@@ -23,18 +29,18 @@ test('renders withow error', () => {
 });
 
 describe('get secret word', () => {
+  let wrapper;
   beforeEach(() => {
     // clear the mock calls from previous tests
     mockGetSecretWord.mockClear();
+    wrapper = wrapper = setup({ success: false });
   });
 
   test('get secret word on app mount', () => {
-    const wrapper = setup();
     expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
   });
 
   test('getSecretWord does not run on app update', () => {
-    const wrapper = setup();
     mockGetSecretWord.mockClear();
 
     // using setProps because wrapper.update() doesn't trigger useEffect
