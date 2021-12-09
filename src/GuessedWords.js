@@ -6,7 +6,7 @@ const GuessedWords = ({ guessedWords }) => {
     );
   } else {
     const guessedWordsRows = guessedWords.map((word) => (
-      <tr data-test="guessed-word" key={word}>
+      <tr data-test="guessed-word" key={word.guessedWord}>
         <td>{word.guessedWord}</td>
         <td>{word.letterMatchCount}</td>
       </tr>

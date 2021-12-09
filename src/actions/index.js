@@ -11,6 +11,7 @@ export const actionTypes = {
  * @returns {function} - Redux Thunk function.
  */
 export const guessWord = (guessedWord) => {
+  console.log(guessedWord)
   return (dispatch, getState) => {
     const secretWord = getState().secretWord;
     const letterMatchCount = getLetterMatchCount(guessedWord, secretWord);
